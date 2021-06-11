@@ -1,6 +1,6 @@
 ## The purpose of this repo is to provide a POC for a shell script to update the GeoDB database at regular intervals
 
-_This was tested on BIG-IP version 15.1.2.1
+_This was tested on BIG-IP version 15.1.2.1_
 
 ### The logic and work flow for the script is as follows:
 
