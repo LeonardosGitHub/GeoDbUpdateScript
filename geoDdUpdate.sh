@@ -75,7 +75,6 @@ function setIfUpdateAvail {
 
 function backupGeodb {
     echo "CHECKING: if $GEODB_DIR has entries, if so backing up $BACKUP_DIR"
-    #if [ -n "$(find $GEODB_DIR -prune -empty -type d 2>/dev/null)" ]
     if [ $(ls -Al $GEODB_DIR | wc -l) -gt 1 ]
     then
         cp -R $GEODB_DIR/* $BACKUP_DIR
