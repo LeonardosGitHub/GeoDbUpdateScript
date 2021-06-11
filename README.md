@@ -13,5 +13,5 @@ _This was tested on BIG-IP version 15.1.2.1_
 * Installs GeoDB rpm files
 
 
-- Much of the script was based off information found here: https://support.f5.com/csp/article/K11176
-- If you have BIG-IQ in your environment, this process can be centralized from BIG-IQ. See https://support.f5.com/csp/article/K22650515
+Much of the script was based off information found here: https://support.f5.com/csp/article/K11176
+If you have BIG-IQ in your environment, this process can be centralized from BIG-IQ. See https://support.f5.com/csp/article/K22650515
