@@ -87,7 +87,7 @@ function backupGeodb {
 
 function getGeodbZip {
     #URL was built and downloaded from alternative West Coast link pulled June 8th
-    #This section
+    #This section will need to be modified depending on where the file will be stored. This also assumes it will be available via HTTP.
     DWNLDHOST=downloads08.f5.com
     DWNLDURLZIP=/esd/download.sv?loc=downloads08.f5.com/downloads/5b6329d5-00a0-4df6-b64a-3b4e26d2fe58/
     DWNLDURLMD5=/esd/download.sv?loc=downloads08.f5.com/downloads/d9668661-11d1-4bce-bb95-6d7f20517741/
