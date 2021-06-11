@@ -24,18 +24,6 @@ function dirCheck {
     fi
 }
 
-function backupGeodb {
-    echo "CHECKING: if $GEODB_DIR has entries, if so backing up $BACKUP_DIR"
-    #if [ -n "$(find $GEODB_DIR -prune -empty -type d 2>/dev/null)" ]
-    if [ $(ls -Al $GEODB_DIR | wc -l) -gt 1 ]
-    then
-        cp -R $GEODB_DIR/* $BACKUP_DIR
-        echo "----- Backed up $GEODB_DIR to $BACKUP_DIR"
-    else
-        echo "----- No backup needed as $GEODB_DIR/* is empty"
-    fi
-}
-
 function performUpdateCheck {
     echo "RUNNING: '/bin/updatecheck -f' to perform 'update check' on demand"
     /bin/updatecheck -f
@@ -74,7 +62,7 @@ function setIfUpdateAvail {
     if [ $EXITSCRIPT -eq 1 ]
     then
         echo "*****************************************************************************"
-        echo "***** NO ACTION: GeoDB's is showing that NO update is needed"
+        echo "***** NO ACTION NEEDED: GeoDB's is showing that NO update is needed"
         echo "*****************************************************************************"
         exit
     else
@@ -82,6 +70,18 @@ function setIfUpdateAvail {
         echo "----- GeoDB-Region2/Worldwide: $GEOLOCREG_AVAIL"
         echo "----- GeoDB-v6:                $GEOLOCV6_AVAIL"
         echo "----- GeoDB-ISP:               $GEOLOCISP_AVAIL"
+    fi
+}
+
+function backupGeodb {
+    echo "CHECKING: if $GEODB_DIR has entries, if so backing up $BACKUP_DIR"
+    #if [ -n "$(find $GEODB_DIR -prune -empty -type d 2>/dev/null)" ]
+    if [ $(ls -Al $GEODB_DIR | wc -l) -gt 1 ]
+    then
+        cp -R $GEODB_DIR/* $BACKUP_DIR
+        echo "----- Backed up $GEODB_DIR to $BACKUP_DIR"
+    else
+        echo "----- No backup needed as $GEODB_DIR/* is empty"
     fi
 }
 
@@ -137,9 +137,9 @@ function installUpdates {
         then
             echo "----- SUCCESS: $rpm was successfully installed"
         else
-            echo "***************************************"
+            echo "*****************************************************"
             echo "***** CHECK: $rpm installation failed, exiting script"
-            echo "***************************************"
+            echo "*****************************************************"
             exit 1
         fi
     done
@@ -149,11 +149,11 @@ function installUpdates {
 echo "=================================="
 dirCheck
 echo "=================================="
-backupGeodb
-echo "=================================="
 performUpdateCheck
 echo "=================================="
 setIfUpdateAvail
+echo "=================================="
+backupGeodb
 echo "=================================="
 getGeodbZip
 echo "=================================="
