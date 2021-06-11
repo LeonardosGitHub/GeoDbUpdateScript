@@ -8,7 +8,6 @@
 ####################################################################
 
 
-start=`date +%s`
 BACKUP_DIR=/shared/GeoIP_backup
 GEODB_DIR=/shared/GeoIP
 
@@ -17,7 +16,7 @@ function dirCheck {
     echo "CHECKING: if $BACKUP_DIR exists"
     if [ ! -e $BACKUP_DIR ]
     then
-        #create file if it doesn't exist
+        #create directory if it doesn't exist
         mkdir $BACKUP_DIR
         echo "----- $BACKUP_DIR did NOT exist, it has been created"
     else
@@ -26,13 +25,14 @@ function dirCheck {
 }
 
 function backupGeodb {
-    echo "CHECKING: if $GEODB_DIR has entries, backing up $BACKUP_DIR"
-    if [ -n "$(find $GEODB_DIR -prune -empty -type d 2>/dev/null)" ]
+    echo "CHECKING: if $GEODB_DIR has entries, if so backing up $BACKUP_DIR"
+    #if [ -n "$(find $GEODB_DIR -prune -empty -type d 2>/dev/null)" ]
+    if [ $(ls -Al $GEODB_DIR | wc -l) -gt 1 ]
     then
-        echo "----- No backup needed as $GEODB_DIR/* is empty"
-    else
         cp -R $GEODB_DIR/* $BACKUP_DIR
         echo "----- Backed up $GEODB_DIR to $BACKUP_DIR"
+    else
+        echo "----- No backup needed as $GEODB_DIR/* is empty"
     fi
 }
 
@@ -74,7 +74,7 @@ function setIfUpdateAvail {
     if [ $EXITSCRIPT -eq 1 ]
     then
         echo "*****************************************************************************"
-        echo "***** CHECK: at least one of the GeoDB's is showing that NO update is needed"
+        echo "***** NO ACTION: GeoDB's is showing that NO update is needed"
         echo "*****************************************************************************"
         exit
     else
