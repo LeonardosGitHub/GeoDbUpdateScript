@@ -103,9 +103,10 @@ function backupGeodb {
 }
 
 function performAuthGetUrls {
-    echo "********************************************************"
-    echo "PROVIDE USER & PASSWORD INFORMATION FOR downloads.f5.com"
-    echo "********************************************************"
+    # User & Password management is a business decision, hardcoding a password is never recommended. 
+    echo "************************************************************"
+    echo "* PROVIDE USER & PASSWORD INFORMATION FOR downloads.f5.com *"
+    echo "************************************************************"
     sleep 2
     echo "F5 Downloads User:"
     read F5USER
