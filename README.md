@@ -1,10 +1,10 @@
-# SCRIPT TO AUTOMATE UPDATES TO THE IP GEOLOCATION DATABASE DIRECTLY FROM BIG-IP
+# AUTOMATE UPDATES TO GeoDB DIRECTLY FROM BIG-IP
 
-## The purpose of this repo is to provide a POC for a shell script to update the GeoDB database at regular intervals from BIG-IP. Use at your own risk
+### Purpose of this repo is to provide a POC for a shell script to update the GeoDB database at regular intervals from BIG-IP. Use at your own risk
 
 _This was tested on BIG-IP version 15.1.2.1_
 
-### The logic and work flow for the script is as follows:
+### The logic and flow for the script is as follows:
 
 * Runs 'geoip_lookup' command against a couple of IPs to compare pre & post DB update
 * If needed, creates a directory to backup GeoDB database files, /shared/GeoIP_backup
