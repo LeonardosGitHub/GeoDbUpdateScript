@@ -160,7 +160,7 @@ function performAuthGetUrls {
         ZIPURL=$(echo $GETHTML | grep -Po "a href='.*?(?=')" | sed "s/a href='//g" | grep -v md5)
         ZIPMD5URL=$(echo $GETHTML | grep -Po "a href='.*?(?=')" | sed "s/a href='//g" | grep md5)
     fi
-    echo "STARTING: Parsing HTML to find actual download URLs"
+    echo "STARTING: Parsing HTML to find seed URLs"
     #Parsing HTML to get URLs to directly download zip and MD5
     DWNLDZIPURL=$(curl -x $PROXYOUT -k -s -H "Cookie: $COOKIEJSESSIONID; $COOKIESSOCOMPL; $COOKIESSO; $COOKIEUSR; $COOKIEBIGIPDWNLS" "https://downloads.f5.com/esd/$ZIPURL" | grep -B10 HTTPS: | grep -Po 'a href=".*?(?=")' | sed 's/a href="//g')
     if [ -z "$DWNLDZIPURL" ];
